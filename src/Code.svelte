@@ -16,7 +16,7 @@
         background-color: rgba(200, 200, 200, 0.3);
         font-size: .8rem;
         color: #888;
-		white-space: pre-line
+		white-space: pre-line;
 	}
 
 	.code > .copy {
