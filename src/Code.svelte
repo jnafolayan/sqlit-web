@@ -1,8 +1,12 @@
 <script>
+	import { toast } from "./lib/notification";
+
 	export let text = '';
 
 	const handleButtonClick = () => {
-		navigator.clipboard.writeText(text).then();
+		navigator.clipboard.writeText(text).then(() => {
+			toast({ text: "Text copied!", type: "success" });
+		});
 	};
 </script>
 
@@ -29,9 +33,11 @@
 		top: 0;
 		font-size: 0.6rem;
 		padding: 2px 6px;
-		background-color: #ddd;
+		background-color: #ff7a4e;
 		border: 0;
 		outline: 0;
 		border-bottom-left-radius: 4px;
+		box-shadow: -1px 4px 8px rgba(200, 200, 200, 0.3);
+		cursor: pointer;
 	}
 </style>

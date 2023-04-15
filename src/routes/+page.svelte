@@ -5,6 +5,7 @@
 	import { WASMBufferToString, loadDBCompiler, stringToWASMBuffer } from '../utils';
 	import '../wasm_exec';
 	import Code from '../Code.svelte';
+	import Notifications from '../Notifications.svelte';
 
 	let wasm: WebAssembly.Instance;
 	const wasmURL = './wasm.wasm';
@@ -57,6 +58,8 @@
 	});
 </script>
 
+<Notifications />
+
 <div class="container">
 	<div class="header">
 		<h3 class="title">SQLit</h3>
@@ -82,38 +85,44 @@
 	<Examples />
 </div>
 
-<section id="tryArea">
-	<div class="container">
-		<Header text="Try it out" />
+<div class="scroll-container">
+	<section id="tryArea">
+		<div class="container">
+			<Header text="Try it out" />
 
-		<p>A test database has been created and populated with a <code>people</code> table.</p>
-		<p>Try out the language below:</p>
-		<br />
+			<p>A test database has been created and populated with a <code>people</code> table.</p>
+			<p>Try out the language below:</p>
+			<br />
 
-		{#each prompts as prompt}
-			<div class="prompt">
-				<Code text={'#> ' + prompt.query} />
-				<Code text={prompt.result} />
+			{#each prompts as prompt}
+				<div class="prompt">
+					<Code text={'#> ' + prompt.query} />
+					<Code text={prompt.result} />
+				</div>
+			{/each}
+
+			<div class="new-prompt">
+				<span class="prompt-prompt">#&gt; </span>
+				<input
+					class="prompt-input"
+					value={userInput}
+					placeholder="Enter a statement"
+					on:change={handleTextChange}
+					on:keyup={(event) => event.key == 'Enter' && runWASM()}
+				/>
+				{#if wasm}
+					<button id="runBtn" class="btn" on:click={handleTryBtnClick}>Run</button>
+				{/if}
 			</div>
-		{/each}
-
-		<div class="new-prompt">
-			<span class="prompt-prompt">#&gt; </span>
-			<input
-				class="prompt-input"
-				value={userInput}
-				placeholder="Enter a statement"
-				on:change={handleTextChange}
-				on:keyup={(event) => event.key == 'Enter' && runWASM()}
-			/>
-			{#if wasm}
-				<button id="runBtn" class="btn" on:click={handleTryBtnClick}>Run</button>
-			{/if}
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 <style>
+	.scroll-container {
+		scroll-behavior: smooth;
+	}
+
 	.container {
 		width: 100%;
 		max-width: 767px;
@@ -126,6 +135,8 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 20px;
+		padding-bottom: 20px;
+		border-bottom: 1px solid #aaa;
 	}
 
 	#tryArea {
