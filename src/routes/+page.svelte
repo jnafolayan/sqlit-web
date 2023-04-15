@@ -78,7 +78,7 @@
 			There are many unfinished parts, but this project isn't meant to be public-ready; it was just
 			a fun exercise. An example of a missing feature (and an important one) is the absence of the <code
 				>WHERE</code
-			> clause.
+			> clause. SQLit is also case sensitive, which means <code>SELECT</code> != <code>select</code>.
 		</p>
 	</section>
 
