@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-    export let text = "";
+	export let text = '';
 
 	const dispatch = createEventDispatcher<{ change: string }>();
 
@@ -15,7 +15,7 @@
 		class="editor__textarea"
 		rows="20"
 		placeholder="SELECT * FROM people"
-        value={text}
+		value={text}
 		on:change={handleTextChange}
 	/>
 </div>

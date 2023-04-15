@@ -8,7 +8,7 @@
 	.header {
 		font-size: 1.4rem;
 		padding-bottom: 0.4rem;
-        margin-bottom: 12px;
+		margin-bottom: 12px;
 	}
 
 	.header::after {

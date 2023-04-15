@@ -32,7 +32,7 @@
 		console.log(text);
 		userInput = '';
 
-		const inputElement = (document.getElementsByClassName('prompt-input')[0] as HTMLInputElement);
+		const inputElement = document.getElementsByClassName('prompt-input')[0] as HTMLInputElement;
 		if (inputElement) {
 			setTimeout(() => {
 				inputElement.scrollIntoView();
@@ -104,7 +104,7 @@
 				value={userInput}
 				placeholder="Enter a statement"
 				on:change={handleTextChange}
-				on:keyup={(event) => event.key == "Enter" && runWASM()}
+				on:keyup={(event) => event.key == 'Enter' && runWASM()}
 			/>
 			{#if wasm}
 				<button id="runBtn" class="btn" on:click={handleTryBtnClick}>Run</button>

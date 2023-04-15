@@ -21,7 +21,9 @@
 
 	<div class="example__block">
 		<p class="example__block__title">Inserting records</p>
-		<Code text="INSERT INTO table_name (name, age, address) VALUES ('John Doe', 43, 'Earth, Solar');" />
+		<Code
+			text="INSERT INTO table_name (name, age, address) VALUES ('John Doe', 43, 'Earth, Solar');"
+		/>
 	</div>
 
 	<div class="example__block">
