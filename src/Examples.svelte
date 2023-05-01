@@ -34,7 +34,7 @@
 		</p>
 		<Code text="SELECT name, age FROM people; // returns the name and age columns" />
 		<br />
-		<Code text="SELECT * FROM people; // returns all columns" />
+		<Code text="SELECT * FROM people WHERE age > 5; // returns all columns" />
 	</div>
 </section>
 
