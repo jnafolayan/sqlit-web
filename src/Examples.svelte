@@ -7,10 +7,31 @@
 	<Header text="The Language" />
 
 	<div class="example__block">
-		<p>There are only 2 data types in SQLit:</p>
+		<p>There are only 3 attribute data types in SQLit:</p>
 		<ul class="example__list">
 			<li>TEXT - any string of characters e.g 'John Doe'</li>
-			<li>INT - an integer</li>
+			<li>INT - an 64-bit integer</li>
+			<li>FLOAT - a 64-bit float</li>
+		</ul>
+	</div>
+
+	<div class="example__block">
+		<p>Strings are a sequence of characters within single quotes <code>''</code>.</p>
+		<br />
+		<p>
+			The only arithmetic operations supported in queries are <code>+</code> (plus) and
+			<code>-</code> (minus).
+		</p>
+		<br />
+		<p>The list of <code>WHERE</code> operators supported are:</p>
+		<br />
+		<ul class="example__list">
+			<li><code>&lt;</code> (less than)</li>
+			<li><code>&gt;</code> (greater than)</li>
+			<li><code>=</code> (equal to)</li>
+			<li><code>!=</code> (not equal to)</li>
+			<li><code>AND</code> (logical AND)</li>
+			<li><code>OR</code> (logical OR)</li>
 		</ul>
 	</div>
 
@@ -21,9 +42,7 @@
 
 	<div class="example__block">
 		<p class="example__block__title">Inserting records</p>
-		<Code
-			text="INSERT INTO people (name, age, address) VALUES ('John Doe', 43, 'Earth, Solar');"
-		/>
+		<Code text="INSERT INTO people (name, age, address) VALUES ('John Doe', 43, 'Earth, Solar');" />
 	</div>
 
 	<div class="example__block">
@@ -32,9 +51,17 @@
 			SQLit allows requesting for all columns using <code>*</code>, as well as specific columns by
 			comma-separating them.
 		</p>
-		<Code text="SELECT name, age FROM people; // returns the name and age columns" />
+		<Code text="SELECT * FROM people;" comment="Select all people" />
 		<br />
-		<Code text="SELECT * FROM people WHERE age > 5; // returns all columns" />
+		<Code
+			text="SELECT name, age FROM people;"
+			comment="Select the name and age attributes of all people"
+		/>
+		<br />
+		<Code
+			text="SELECT * FROM people WHERE age > 5;"
+			comment="Select only if the person's age is over 5"
+		/>
 	</div>
 </section>
 

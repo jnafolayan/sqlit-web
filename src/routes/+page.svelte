@@ -19,18 +19,16 @@
 	};
 	let prompts: Prompt[] = [];
 
-	let userInput = 'SELECT * FROM people';
+	let userInput = '';
 	const handleTextChange = (event: Event) => {
 		userInput = (event.target as HTMLTextAreaElement).value;
 	};
 
 	const log = (addr: number, length: number) => {
-		console.log({ addr, length });
 		if (!wasm) return;
 
 		const text = WASMBufferToString(wasm, addr, length);
-		prompts = prompts.concat([{ query: userInput, result: text }]);
-		console.log(text);
+		prompts = prompts.concat([{ query: userInput.trim(), result: text }]);
 		userInput = '';
 
 		const inputElement = document.getElementsByClassName('prompt-input')[0] as HTMLInputElement;
@@ -49,12 +47,19 @@
 	};
 
 	const runWASM = () => {
-		const { ptr, length } = stringToWASMBuffer(wasm, userInput);
+		if (userInput.trim() == '') {
+			return;
+		}
+		const { ptr, length } = stringToWASMBuffer(wasm, userInput.trim());
 		wasm.exports.run(ptr, length);
 	};
 
 	onMount(async () => {
 		wasm = await loadDBCompiler(go, wasmURL);
+
+		// Always display the results of fetching all people first.
+		userInput = 'SELECT * FROM people';
+		runWASM();
 	});
 </script>
 
@@ -71,12 +76,13 @@
 	<section class="intro">
 		<p>
 			SQLit is a minimal implementation of SQL. It contains a very tiny subset of the Structured
-			Query Language and was created while having fun with databases.
+			Query Language.
 		</p>
 		<br />
 		<p>
 			There are many unfinished parts, but this project isn't meant to be public-ready; it was just
-			a fun exercise. SQLit is also case insensitive, which means <code>SELECT</code> is the same as <code>select</code>.
+			a fun exercise. SQLit is case insensitive, which means <code>SELECT</code> is the same as
+			<code>select</code>.
 		</p>
 	</section>
 

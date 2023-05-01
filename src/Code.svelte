@@ -1,17 +1,24 @@
 <script>
-	import { toast } from "./lib/notification";
+	import { toast } from './lib/notification';
 
 	export let text = '';
+	export let comment = '';
 
 	const handleButtonClick = () => {
-		navigator.clipboard.writeText(text).then(() => {
-			toast({ text: "Text copied!", type: "success" });
+		let t = text;
+		if (text.startsWith('#> ')) {
+			// Replace only the first occurrence
+			t = text.replace('#> ', '');
+		}
+		navigator.clipboard.writeText(t).then(() => {
+			toast({ text: 'Text copied!', type: 'success' });
 		});
 	};
 </script>
 
 <div class="code">
-	{text} <button class="copy" on:click={handleButtonClick}>COPY</button>
+	{text}
+	{comment ? '// ' + comment : ''} <button class="copy" on:click={handleButtonClick}>COPY</button>
 </div>
 
 <style>
