@@ -63,6 +63,17 @@
 			comment="Select only if the person's age is over 5"
 		/>
 	</div>
+
+	<div class="example__block">
+		<p class="example__block__title">Updating records</p>
+		<Code text="UPDATE people SET age=50 WHERE name='John Doe';" comment="Change John Doe's age to 50"  />
+	</div>
+
+	<div class="example__block">
+		<p class="example__block__title">Deleting records</p>
+		<Code text="DELETE FROM people WHERE name='John Doe';" comment="Delete John Doe's record"  />
+		<Code text="DELETE FROM people;" comment="Delete all records"  />
+	</div>
 </section>
 
 <style>
